@@ -1,0 +1,55 @@
+<%- include("includes/head")%> 
+<%- include("includes/nav") %> 
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-2"></div>
+
+        <div class="col-lg-8 my-3">
+            <h1 class="text-center">Agenda</h1>
+            <p class="text-center lead">Seus itens estão abaixo</p>            
+
+            <%- include("includes/messages")%> 
+            <% if(agendas.length > 0){%> 
+            <div class="responsive-table">
+                <table class="table my-3">
+                    <thead>
+                        <tr>
+                            <td>Descrição</td>
+                            <td>Senha</td>
+                            <td colspan="2">Opções</td>
+                            <td></td>                            
+                        </tr>
+                    </thead>
+                    <% agendas.forEach(agenda => {%>
+                        <tr>
+                            <td>
+                                <%= agenda.description%>                                
+                            </td>
+                            <td>
+                                <%= agenda.password%>
+                            </td>
+                            <td>
+                                <a href="/agenda/index/<%= agenda._id%>">Editar</a>
+                            </td>
+                            <td>
+                                <a class="text-danger" href="/agenda/delete/<%= agenda._id%>">Excluir</a>
+                            </td>
+                        </tr>
+                    <% })%>                
+                </table>
+            </div>
+            <% }else{ %> 
+                <p class="text-center lead">Não existem itens na sua agenda</p>
+            <% } %> 
+
+
+        </div>
+
+        <div class="col-lg-2"></div>
+
+    </div>
+</div>
+
+
+<%- include("includes/footer") %> 
